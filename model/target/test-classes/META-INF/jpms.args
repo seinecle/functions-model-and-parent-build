@@ -1,0 +1,4 @@
+--patch-module
+net.clementlevallois.functions.model=_
+--add-reads
+net.clementlevallois.functions.model=ALL-UNNAMED

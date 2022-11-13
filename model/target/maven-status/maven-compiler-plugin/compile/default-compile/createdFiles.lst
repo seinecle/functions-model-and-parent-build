@@ -1,2 +1,8 @@
-module-info.class
 net\clementlevallois\functions\model\Occurrence.class
+module-info.class
+net\clementlevallois\functions\model\bibd\BIBDResults.class
+net\clementlevallois\functions\model\bibd\DataBlocks.class
+net\clementlevallois\functions\model\bibd\Block.class
+net\clementlevallois\functions\model\bibd\BlockToEvaluate.class
+net\clementlevallois\functions\model\bibd\Record.class
+net\clementlevallois\functions\model\Prediction.class
