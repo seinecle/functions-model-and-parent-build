@@ -5,6 +5,7 @@
  */
 package net.clementlevallois.functions.model.bibd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author LEVALLOIS
  * @param <T>
  */
-public class BIBDResults<T extends Comparable<? super T>> {
+public class BIBDResults<T extends Comparable<? super T>> implements Serializable {
 
     private List<List<T>> seriesOfBlocks = new ArrayList();
     private int minItemOccurrence;

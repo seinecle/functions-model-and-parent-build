@@ -5,6 +5,7 @@
  */
 package net.clementlevallois.functions.model.bibd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Objects;
  * @author LEVALLOIS
  * @param <T>
  */
-public class Block<T extends Comparable<? super T>> {
+public class Block<T extends Comparable<? super T>> implements Serializable {
     
     private List<T> items;
     private final int blockSize;
