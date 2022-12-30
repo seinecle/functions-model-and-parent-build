@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.clementlevallois.functions</groupId>
+        <artifactId>parentbuild</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <name>functions-model</name>
+    <artifactId>functions-model</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <exec.mainClass>net.clementlevallois.functions.model.Model</exec.mainClass>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.parsson/parsson -->
+        <dependency>
+            <groupId>org.eclipse.parsson</groupId>
+            <artifactId>parsson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.json.bind</groupId>
+            <artifactId>jakarta.json.bind-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>
