@@ -13,35 +13,48 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <gephi.version>0.10.1</gephi.version>
-        <gephi.toolkit.version>0.10.0</gephi.toolkit.version>
+        <gephi.toolkit.version>0.10.1</gephi.toolkit.version>
         <netbeans.version>RELEASE140</netbeans.version>
+		
+        <!-- JReleaser properties -->
+		
     </properties>
       
     <modules>
         <module>NocodeFunctionsWebServices</module>
-        <module>umigon-family</module>
         <module>Cowo-function</module>
         <module>Gaze</module>
         <module>graph-ops</module>
         <module>gexf-vosviewer-converter</module>
         <module>LinkPrediction</module>
-        <module>pdf-matcher</module>
         <module>topic-detection-function</module>
         <module>functions-model</module>
+        <module>spatialize-function</module>
+        <module>TestsForMaps</module>
+        <module>umigon-model-classification</module>
     </modules>
     
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.vdurmont</groupId>
-                <artifactId>emoji-java</artifactId>
-                <version>5.1.1</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
                 <groupId>net.clementlevallois.utils</groupId>
                 <artifactId>utils-core</artifactId>
-                <version>1.0</version>
+                <version>0.13</version>
+            </dependency>
+            <dependency>
+                <groupId>net.clementlevallois.functions</groupId>
+                <artifactId>umigon-ngram-ops</artifactId>
+                <version>0.18</version>
+            </dependency>
+            <dependency>
+                <groupId>net.clementlevallois.functions</groupId>
+                <artifactId>umigon-tokenizer</artifactId>
+                <version>0.21</version>
+            </dependency>
+            <dependency>
+                <groupId>net.clementlevallois.functions</groupId>
+                <artifactId>umigon-stopwords</artifactId>
+                <version>0.14</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.json</groupId>
@@ -65,6 +78,13 @@
                 <artifactId>yasson</artifactId>
                 <version>3.0.2</version>
             </dependency>
+        <!--for tests-->        
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13.2</version>
+				<scope>test</scope>
+			</dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
@@ -90,26 +110,54 @@
     </dependencyManagement>
       
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-source</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.0</version>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>11</source>
+                        <target>11</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
                     <executions>
                         <execution>
                             <goals>
                                 <goal>compile</goal>
                             </goals>
                             <id>compile</id>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.5.0</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadoc</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
                         </execution>
                     </executions>
                 </plugin>
@@ -160,6 +208,35 @@
                             </configuration>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jreleaser</groupId>
+                    <artifactId>jreleaser-maven-plugin</artifactId>
+                    <version>1.6.0</version>
+                    <configuration>
+                        <jreleaser>
+                            <signing>
+                                <active>ALWAYS</active>
+                                <armored>true</armored>
+                            </signing>
+                            <deploy>
+                                <maven>
+                                    <pomchecker>
+                                        <version>1.9.0</version>
+                                    </pomchecker>
+                                    <nexus2>
+                                        <maven-central>
+                                            <active>ALWAYS</active>
+                                            <url>https://s01.oss.sonatype.org/service/local</url>;
+                                            <closeRepository>true</closeRepository>
+                                            <releaseRepository>true</releaseRepository>
+                                            <stagingRepositories>target/staging-deploy</stagingRepositories>
+                                        </maven-central>
+                                    </nexus2>
+                                </maven>
+                            </deploy>
+                        </jreleaser>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

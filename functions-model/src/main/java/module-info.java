@@ -9,6 +9,5 @@ module net.clementlevallois.functions.model {
     requires jakarta.json.bind;
     
     exports net.clementlevallois.functions.model;
-    exports net.clementlevallois.functions.model.bibd;
           
 }
