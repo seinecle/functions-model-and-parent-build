@@ -10,8 +10,8 @@
       
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
         <gephi.version>0.10.1</gephi.version>
         <gephi.toolkit.version>0.10.1</gephi.toolkit.version>
         <netbeans.version>RELEASE140</netbeans.version>
@@ -130,8 +130,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.11.0</version>
                     <configuration>
-                        <source>11</source>
-                        <target>11</target>
+                        <source>19</source>
+                        <target>19</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
                     <executions>
